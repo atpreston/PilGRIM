@@ -4,10 +4,10 @@ import Clash.Prelude hiding (Word)
 
 type Word = (BitVector 64)
 
-data NodeType = CCon | Fun | PFun deriving (Eq, Show)
-data Tag = Tag {nodetype :: NodeType, pcount :: (BitVector 4), mask :: (BitVector 7)} deriving (Eq, Show)
+data NodeType = CCon | Fun | PFun deriving (Eq, Show, Generic, NFDataX)
+data Tag = Tag {nodetype :: NodeType, pcount :: (BitVector 4), mask :: (BitVector 7)} deriving (Eq, Show, Generic, NFDataX)
 
-data Node = Node {tag :: Tag, args :: (Vec 7 Word)} deriving (Eq, Show)
+data Node = Node {tag :: Tag, args :: (Vec 7 Word)} deriving (Eq, Show, Generic, NFDataX)
 
 decodetag :: Word -> Tag
 decodetag bits = Tag nodetype pcount mask where
