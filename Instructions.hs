@@ -35,4 +35,6 @@ getop :: (KnownNat n) => Word -> Vec (n+1) (Word) -> Word
 getop (0b0) = foldr1 (+)
 getop (0b1) = foldr1 (-)
 getop (0b10) = foldr1 (*)
+getop (0b11) = foldr1 (div)
+getop (0b100) = (\xs -> (foldr (+) 0 (tail xs)) `mod` (head xs))
 getop _ = const 0b0
